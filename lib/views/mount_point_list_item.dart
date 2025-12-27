@@ -4,12 +4,14 @@ import 'package:nfs_mounter/models/mount_point.dart';
 class MountPointListItem extends StatefulWidget {
   final MountPoint mountPoint;
   final VoidCallback onEdit;
+  final VoidCallback onDelete;
   final VoidCallback onToggleMount;
 
   const MountPointListItem({
     super.key,
     required this.mountPoint,
     required this.onEdit,
+    required this.onDelete,
     required this.onToggleMount,
   });
 
@@ -40,6 +42,11 @@ class _MountPointListItemState extends State<MountPointListItem> {
                   icon: const Icon(Icons.edit),
                   tooltip: '설정 변경',
                   onPressed: widget.onEdit,
+                ),
+                IconButton(
+                  icon: const Icon(Icons.delete),
+                  tooltip: '삭제',
+                  onPressed: widget.onDelete,
                 ),
                 const SizedBox(width: 8),
                 FilledButton.tonal(

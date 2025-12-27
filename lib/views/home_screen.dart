@@ -34,6 +34,30 @@ class _HomeScreenState extends State<HomeScreen> {
             .map((json) => MountPoint.fromJson(json))
             .toList();
       });
+      // 저장된 상태와 실제 시스템 상태 동기화
+      _checkMountStatus();
+    }
+  }
+
+  Future<void> _checkMountStatus() async {
+    bool stateChanged = false;
+    final List<MountPoint> updatedList = [];
+
+    for (final mountPoint in _mountPoints) {
+      final isMounted = await _nfsService.isMounted(mountPoint.localPath);
+      if (mountPoint.isMounted != isMounted) {
+        updatedList.add(mountPoint.copyWith(isMounted: isMounted));
+        stateChanged = true;
+      } else {
+        updatedList.add(mountPoint);
+      }
+    }
+
+    if (stateChanged && mounted) {
+      setState(() {
+        _mountPoints = updatedList;
+        _saveMountPoints();
+      });
     }
   }
 
@@ -68,6 +92,33 @@ class _HomeScreenState extends State<HomeScreen> {
     if (result != null) {
       setState(() {
         _mountPoints[index] = result;
+        _saveMountPoints();
+      });
+    }
+  }
+
+  void _deleteMountPoint(int index) async {
+    final bool? confirm = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('마운트 포인트 삭제'),
+        content: Text('\'${_mountPoints[index].name}\'을(를) 정말 삭제하시겠습니까?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('취소'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: const Text('삭제'),
+          ),
+        ],
+      ),
+    );
+
+    if (confirm == true) {
+      setState(() {
+        _mountPoints.removeAt(index);
         _saveMountPoints();
       });
     }
@@ -147,6 +198,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 return MountPointListItem(
                   mountPoint: _mountPoints[index],
                   onEdit: () => _editMountPoint(index),
+                  onDelete: () => _deleteMountPoint(index),
                   onToggleMount: () => _toggleMount(index),
                 );
               },

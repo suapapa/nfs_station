@@ -2,11 +2,31 @@ import 'dart:io';
 import '../models/mount_point.dart';
 
 class NfsService {
+  /// 마운트 상태 확인
+  Future<bool> isMounted(String localPath) async {
+    final resolvedLocalPath = _resolvePath(localPath);
+    final result = await Process.run('mount', []);
+
+    if (result.exitCode != 0) {
+      // mount 명령 실패 시 false 반환 (보수적 접근)
+      return false;
+    }
+
+    final output = result.stdout.toString();
+    // 정확한 매칭을 위해 ' on path (' 패턴 사용
+    return output.contains(' on $resolvedLocalPath (');
+  }
+
   /// 마운트 실행
   ///
   /// 1. 로컬 디렉토리가 없으면 생성 (현재 사용자 권한)
   /// 2. osascript를 사용하여 관리자 권한으로 mount 명령 실행
   Future<void> mount(MountPoint mountPoint) async {
+    // 이미 마운트되어 있는지 확인
+    if (await isMounted(mountPoint.localPath)) {
+      return; // 이미 마운트됨
+    }
+
     final resolvedLocalPath = _resolvePath(mountPoint.localPath);
 
     // 1. 로컬 디렉토리 생성 (사용자 권한)
@@ -39,6 +59,11 @@ class NfsService {
 
   /// 언마운트 실행
   Future<void> unmount(MountPoint mountPoint) async {
+    // 이미 언마운트되어 있는지 확인
+    if (!await isMounted(mountPoint.localPath)) {
+      return; // 이미 언마운트됨
+    }
+
     final resolvedLocalPath = _resolvePath(mountPoint.localPath);
 
     // 언마운트 명령 구성
@@ -50,6 +75,10 @@ class NfsService {
     final processResult = await Process.run('osascript', ['-e', script]);
 
     if (processResult.exitCode != 0) {
+      // 언마운트 실패 시, 이미 언마운트된 상태일 수 있으므로 재확인
+      if (!await isMounted(mountPoint.localPath)) {
+        return;
+      }
       throw Exception('언마운트 실패: ${processResult.stderr}');
     }
   }

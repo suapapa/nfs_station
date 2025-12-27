@@ -1,8 +1,8 @@
 #!/bin/bash
 
-HOST=192.168.219.153
-HOST_DIR=/export
-MOUNT_PATH="~/nfs/omv"
+HOST=
+HOST_DIR=
+MOUNT_PATH=
 
 usage() {
   echo "Usage: $0 [-h host] [-u]"

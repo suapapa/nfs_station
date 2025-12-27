@@ -1,4 +1,38 @@
 {
   "@@locale": "en",
-  "appTitle": "NFS Mounter"
+  "appTitle": "NFS Mounter",
+  "addMountPoint": "Add Mount Point",
+  "editMountPoint": "Edit Mount Point",
+  "deleteMountPoint": "Delete Mount Point",
+  "deleteConfirmation": "Are you sure you want to delete '{name}'?",
+  "@deleteConfirmation": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "name": "Name",
+  "serverAddress": "Server Address",
+  "serverPath": "Server Directory",
+  "localPath": "Mount Directory",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "delete": "Delete",
+  "mount": "Mount",
+  "unmount": "Unmount",
+  "mounting": "Mounting...",
+  "unmounting": "Unmounting...",
+  "mountSuccess": "Mount Success",
+  "unmountSuccess": "Unmount Success",
+  "error": "Error: {message}",
+  "@error": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "noMountPoints": "No mount points registered.",
+  "editSettings": "Edit settings"
 }

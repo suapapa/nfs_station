@@ -14,20 +14,21 @@ This document provides key guidelines and context for AI agents and developers t
 
 - **Language**: [Dart](https://dart.dev/)
 - **Framework**: [Flutter for Desktop (macOS)](https://flutter.dev/desktop)
-- **State Management**: *To Be Determined (TBD)*
+- **State Management**: MVC with `setState` and `SharedPreferences` for persistence
 - **Key Dependencies**:
   - `flutter_localizations` (Required for multi-language support)
-  - *TBD*
+  - `shared_preferences` (For data persistence)
 
 ## 3. Architecture & Design
 
-- **Architecture Pattern**: Provider
+- **Architecture Pattern**: MVC (Model-View-Controller)
 - **Directory Structure**:
   - `lib/`: Main source code
     - `l10n/`: Localization files (`.arb`)
     - `models/`: Data models
     - `views/`: UI components and screens
-    - `controllers/`: Logic and state management
+    - `services/`: Business logic and external services
+    - `controllers/`: Logic and state management (Optional)
   - `test/`: Unit and widget tests
 
 ## 4. Coding Conventions

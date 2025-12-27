@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nfs_mounter/models/mount_point.dart';
+import 'package:nfs_mounter/l10n/app_localizations.dart';
 
 class MountPointDialog extends StatefulWidget {
   final MountPoint? mountPoint;
@@ -45,26 +46,38 @@ class _MountPointDialogState extends State<MountPointDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(widget.mountPoint == null ? '마운트 포인트 추가' : '마운트 포인트 수정'),
+      title: Text(
+        widget.mountPoint == null
+            ? AppLocalizations.of(context)!.addMountPoint
+            : AppLocalizations.of(context)!.editMountPoint,
+      ),
       content: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             TextField(
               controller: _nameController,
-              decoration: const InputDecoration(labelText: '이름'),
+              decoration: InputDecoration(
+                labelText: AppLocalizations.of(context)!.name,
+              ),
             ),
             TextField(
               controller: _serverAddressController,
-              decoration: const InputDecoration(labelText: '서버 주소'),
+              decoration: InputDecoration(
+                labelText: AppLocalizations.of(context)!.serverAddress,
+              ),
             ),
             TextField(
               controller: _serverPathController,
-              decoration: const InputDecoration(labelText: '서버 디렉터리'),
+              decoration: InputDecoration(
+                labelText: AppLocalizations.of(context)!.serverPath,
+              ),
             ),
             TextField(
               controller: _localPathController,
-              decoration: const InputDecoration(labelText: '마운트 디렉터리'),
+              decoration: InputDecoration(
+                labelText: AppLocalizations.of(context)!.localPath,
+              ),
             ),
           ],
         ),
@@ -72,7 +85,7 @@ class _MountPointDialogState extends State<MountPointDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('취소'),
+          child: Text(AppLocalizations.of(context)!.cancel),
         ),
         FilledButton(
           onPressed: () {
@@ -86,7 +99,7 @@ class _MountPointDialogState extends State<MountPointDialog> {
             );
             Navigator.of(context).pop(mountPoint);
           },
-          child: const Text('확인'),
+          child: Text(AppLocalizations.of(context)!.confirm),
         ),
       ],
     );

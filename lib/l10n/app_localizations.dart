@@ -105,6 +105,126 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'NFS Mounter'**
   String get appTitle;
+
+  /// No description provided for @addMountPoint.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Mount Point'**
+  String get addMountPoint;
+
+  /// No description provided for @editMountPoint.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Mount Point'**
+  String get editMountPoint;
+
+  /// No description provided for @deleteMountPoint.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Mount Point'**
+  String get deleteMountPoint;
+
+  /// No description provided for @deleteConfirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete \'{name}\'?'**
+  String deleteConfirmation(String name);
+
+  /// No description provided for @name.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get name;
+
+  /// No description provided for @serverAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Server Address'**
+  String get serverAddress;
+
+  /// No description provided for @serverPath.
+  ///
+  /// In en, this message translates to:
+  /// **'Server Directory'**
+  String get serverPath;
+
+  /// No description provided for @localPath.
+  ///
+  /// In en, this message translates to:
+  /// **'Mount Directory'**
+  String get localPath;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// No description provided for @mount.
+  ///
+  /// In en, this message translates to:
+  /// **'Mount'**
+  String get mount;
+
+  /// No description provided for @unmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Unmount'**
+  String get unmount;
+
+  /// No description provided for @mounting.
+  ///
+  /// In en, this message translates to:
+  /// **'Mounting...'**
+  String get mounting;
+
+  /// No description provided for @unmounting.
+  ///
+  /// In en, this message translates to:
+  /// **'Unmounting...'**
+  String get unmounting;
+
+  /// No description provided for @mountSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Mount Success'**
+  String get mountSuccess;
+
+  /// No description provided for @unmountSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Unmount Success'**
+  String get unmountSuccess;
+
+  /// No description provided for @error.
+  ///
+  /// In en, this message translates to:
+  /// **'Error: {message}'**
+  String error(String message);
+
+  /// No description provided for @noMountPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'No mount points registered.'**
+  String get noMountPoints;
+
+  /// No description provided for @editSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit settings'**
+  String get editSettings;
 }
 
 class _AppLocalizationsDelegate

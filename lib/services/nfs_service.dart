@@ -35,7 +35,7 @@ class NfsService {
       try {
         await directory.create(recursive: true);
       } catch (e) {
-        throw Exception('로컬 디렉토리 생성 실패: $e');
+        throw Exception('Failed to create local directory: $e');
       }
     }
 
@@ -53,7 +53,7 @@ class NfsService {
     final processResult = await Process.run('osascript', ['-e', script]);
 
     if (processResult.exitCode != 0) {
-      throw Exception('마운트 실패: ${processResult.stderr}');
+      throw Exception('Mount failed: ${processResult.stderr}');
     }
   }
 
@@ -79,7 +79,7 @@ class NfsService {
       if (!await isMounted(mountPoint.localPath)) {
         return;
       }
-      throw Exception('언마운트 실패: ${processResult.stderr}');
+      throw Exception('Unmount failed: ${processResult.stderr}');
     }
   }
 

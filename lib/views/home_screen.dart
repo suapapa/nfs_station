@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:nfs_mounter/l10n/app_localizations.dart';
 import 'package:nfs_mounter/models/mount_point.dart';
 import 'package:nfs_mounter/views/mount_point_dialog.dart';
 import 'package:nfs_mounter/views/mount_point_list_item.dart';
@@ -101,16 +102,20 @@ class _HomeScreenState extends State<HomeScreen> {
     final bool? confirm = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('마운트 포인트 삭제'),
-        content: Text('\'${_mountPoints[index].name}\'을(를) 정말 삭제하시겠습니까?'),
+        title: Text(AppLocalizations.of(context)!.deleteMountPoint),
+        content: Text(
+          AppLocalizations.of(
+            context,
+          )!.deleteConfirmation(_mountPoints[index].name),
+        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('취소'),
+            child: Text(AppLocalizations.of(context)!.cancel),
           ),
           TextButton(
             onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('삭제'),
+            child: Text(AppLocalizations.of(context)!.delete),
           ),
         ],
       ),
@@ -132,7 +137,11 @@ class _HomeScreenState extends State<HomeScreen> {
       // 진행 중 표시 (옵션)
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(mountPoint.isMounted ? '언마운트 중...' : '마운트 중...'),
+          content: Text(
+            mountPoint.isMounted
+                ? AppLocalizations.of(context)!.unmounting
+                : AppLocalizations.of(context)!.mounting,
+          ),
           duration: const Duration(seconds: 1),
         ),
       );
@@ -155,15 +164,18 @@ class _HomeScreenState extends State<HomeScreen> {
         SnackBar(
           content: Text(
             !mountPoint.isMounted
-                ? '마운트 성공'
-                : '언마운트 성공', // 토글 전 상태 기준 메시지 (mounted=false -> 마운트 성공)
+                ? AppLocalizations.of(context)!.mountSuccess
+                : AppLocalizations.of(context)!.unmountSuccess,
           ),
         ),
       );
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('오류: $e'), backgroundColor: Colors.red),
+        SnackBar(
+          content: Text(AppLocalizations.of(context)!.error(e.toString())),
+          backgroundColor: Colors.red,
+        ),
       );
     }
   }
@@ -185,13 +197,13 @@ class _HomeScreenState extends State<HomeScreen> {
             child: FilledButton.icon(
               onPressed: _addMountPoint,
               icon: const Icon(Icons.add),
-              label: const Text('마운트 포인트 추가'),
+              label: Text(AppLocalizations.of(context)!.addMountPoint),
             ),
           ),
         ],
       ),
       body: _mountPoints.isEmpty
-          ? const Center(child: Text('등록된 마운트 포인트가 없습니다.'))
+          ? Center(child: Text(AppLocalizations.of(context)!.noMountPoints))
           : ListView.builder(
               itemCount: _mountPoints.length,
               itemBuilder: (context, index) {

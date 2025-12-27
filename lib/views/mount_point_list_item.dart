@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nfs_mounter/models/mount_point.dart';
+import 'package:nfs_mounter/l10n/app_localizations.dart';
 
 class MountPointListItem extends StatefulWidget {
   final MountPoint mountPoint;
@@ -40,18 +41,22 @@ class _MountPointListItemState extends State<MountPointListItem> {
                 ),
                 IconButton(
                   icon: const Icon(Icons.edit),
-                  tooltip: '설정 변경',
+                  tooltip: AppLocalizations.of(context)!.editSettings,
                   onPressed: widget.onEdit,
                 ),
                 IconButton(
                   icon: const Icon(Icons.delete),
-                  tooltip: '삭제',
+                  tooltip: AppLocalizations.of(context)!.delete,
                   onPressed: widget.onDelete,
                 ),
                 const SizedBox(width: 8),
                 FilledButton.tonal(
                   onPressed: widget.onToggleMount,
-                  child: Text(widget.mountPoint.isMounted ? '언마운트' : '마운트'),
+                  child: Text(
+                    widget.mountPoint.isMounted
+                        ? AppLocalizations.of(context)!.unmount
+                        : AppLocalizations.of(context)!.mount,
+                  ),
                 ),
                 const SizedBox(width: 8),
                 IconButton(
@@ -76,9 +81,18 @@ class _MountPointListItemState extends State<MountPointListItem> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   const Divider(),
-                  _buildDetailRow('서버 주소', widget.mountPoint.serverAddress),
-                  _buildDetailRow('서버 디렉터리', widget.mountPoint.serverPath),
-                  _buildDetailRow('마운트 디렉터리', widget.mountPoint.localPath),
+                  _buildDetailRow(
+                    AppLocalizations.of(context)!.serverAddress,
+                    widget.mountPoint.serverAddress,
+                  ),
+                  _buildDetailRow(
+                    AppLocalizations.of(context)!.serverPath,
+                    widget.mountPoint.serverPath,
+                  ),
+                  _buildDetailRow(
+                    AppLocalizations.of(context)!.localPath,
+                    widget.mountPoint.localPath,
+                  ),
                 ],
               ),
             ),

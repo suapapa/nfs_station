@@ -1,4 +1,38 @@
 {
   "@@locale": "ko",
-  "appTitle": "NFS Mounter"
+  "appTitle": "NFS Mounter",
+  "addMountPoint": "마운트 포인트 추가",
+  "editMountPoint": "마운트 포인트 수정",
+  "deleteMountPoint": "마운트 포인트 삭제",
+  "deleteConfirmation": "'{name}'을(를) 정말 삭제하시겠습니까?",
+  "@deleteConfirmation": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "name": "이름",
+  "serverAddress": "서버 주소",
+  "serverPath": "서버 디렉터리",
+  "localPath": "마운트 디렉터리",
+  "cancel": "취소",
+  "confirm": "확인",
+  "delete": "삭제",
+  "mount": "마운트",
+  "unmount": "언마운트",
+  "mounting": "마운트 중...",
+  "unmounting": "언마운트 중...",
+  "mountSuccess": "마운트 성공",
+  "unmountSuccess": "언마운트 성공",
+  "error": "오류: {message}",
+  "@error": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "noMountPoints": "등록된 마운트 포인트가 없습니다.",
+  "editSettings": "설정 변경"
 }

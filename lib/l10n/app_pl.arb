@@ -34,5 +34,10 @@
     }
   },
   "noMountPoints": "Brak zarejestrowanych punktów montowania.",
-  "editSettings": "Edytuj ustawienia"
+  "editSettings": "Edytuj ustawienia",
+  "settings": "Ustawienia",
+  "theme": "Motyw",
+  "system": "Systemowy",
+  "light": "Jasny",
+  "dark": "Ciemny"
 }

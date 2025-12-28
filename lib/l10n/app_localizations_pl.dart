@@ -74,4 +74,19 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get editSettings => 'Edytuj ustawienia';
+
+  @override
+  String get settings => 'Ustawienia';
+
+  @override
+  String get theme => 'Motyw';
+
+  @override
+  String get system => 'Systemowy';
+
+  @override
+  String get light => 'Jasny';
+
+  @override
+  String get dark => 'Ciemny';
 }

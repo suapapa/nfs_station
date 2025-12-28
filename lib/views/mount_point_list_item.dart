@@ -7,13 +7,18 @@ class MountPointListItem extends StatefulWidget {
   final VoidCallback onEdit;
   final VoidCallback onDelete;
   final VoidCallback onToggleMount;
+  final VoidCallback onOpenFinder;
+
+  final int index; // Added index parameter
 
   const MountPointListItem({
     super.key,
+    required this.index, // Added index parameter
     required this.mountPoint,
     required this.onEdit,
     required this.onDelete,
     required this.onToggleMount,
+    required this.onOpenFinder,
   });
 
   @override
@@ -34,20 +39,41 @@ class _MountPointListItemState extends State<MountPointListItem> {
             child: Row(
               children: [
                 Expanded(
-                  child: Text(
-                    widget.mountPoint.name,
-                    style: Theme.of(context).textTheme.titleMedium,
+                  child: Row(
+                    children: [
+                      ReorderableDragStartListener(
+                        index: widget.index,
+                        child: const Padding(
+                          padding: EdgeInsets.only(right: 8.0),
+                          child: Icon(Icons.menu),
+                        ),
+                      ),
+                      Flexible(
+                        child: Text(
+                          widget.mountPoint.name,
+                          style: Theme.of(context).textTheme.titleMedium,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.edit),
+                        tooltip: AppLocalizations.of(context)!.editSettings,
+                        onPressed: widget.onEdit,
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.delete),
+                        tooltip: AppLocalizations.of(context)!.delete,
+                        onPressed: widget.onDelete,
+                      ),
+                    ],
                   ),
                 ),
                 IconButton(
-                  icon: const Icon(Icons.edit),
-                  tooltip: AppLocalizations.of(context)!.editSettings,
-                  onPressed: widget.onEdit,
-                ),
-                IconButton(
-                  icon: const Icon(Icons.delete),
-                  tooltip: AppLocalizations.of(context)!.delete,
-                  onPressed: widget.onDelete,
+                  icon: const Icon(Icons.folder_open),
+                  tooltip: 'Open in Finder',
+                  onPressed: widget.mountPoint.isMounted
+                      ? widget.onOpenFinder
+                      : null,
                 ),
                 const SizedBox(width: 8),
                 FilledButton.tonal(

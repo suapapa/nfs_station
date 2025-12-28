@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:nfs_mounter/l10n/app_localizations.dart';
@@ -6,9 +7,11 @@ import 'package:nfs_mounter/models/mount_point.dart';
 import 'package:nfs_mounter/views/mount_point_dialog.dart';
 import 'package:nfs_mounter/views/mount_point_list_item.dart';
 import 'package:nfs_mounter/services/nfs_service.dart';
+import 'package:nfs_mounter/controllers/theme_controller.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final ThemeController? themeController;
+  const HomeScreen({super.key, this.themeController});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -180,6 +183,84 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  void _showSettingsDialog() {
+    if (widget.themeController == null) return;
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return ListenableBuilder(
+          listenable: widget.themeController!,
+          builder: (context, _) {
+            return AlertDialog(
+              title: Text(AppLocalizations.of(context)!.settings),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    AppLocalizations.of(context)!.theme,
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  const SizedBox(height: 8),
+                  ...ThemeMode.values.map((mode) {
+                    return RadioListTile<ThemeMode>(
+                      title: Text(_getThemeModeName(context, mode)),
+                      value: mode,
+                      groupValue: widget.themeController!.themeMode,
+                      onChanged: (val) {
+                        if (val != null) {
+                          widget.themeController!.updateThemeMode(val);
+                        }
+                      },
+                    );
+                  }),
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: Text(AppLocalizations.of(context)!.confirm),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+  }
+
+  String _getThemeModeName(BuildContext context, ThemeMode mode) {
+    switch (mode) {
+      case ThemeMode.system:
+        return AppLocalizations.of(context)!.system;
+      case ThemeMode.light:
+        return AppLocalizations.of(context)!.light;
+      case ThemeMode.dark:
+        return AppLocalizations.of(context)!.dark;
+    }
+  }
+
+  void _openInFinder(String path) {
+    if (Platform.isMacOS) {
+      String resolvedPath = path;
+      if (path.startsWith('~/')) {
+        final home = Platform.environment['HOME'];
+        if (home != null) {
+          resolvedPath = path.replaceFirst('~', home);
+        }
+      } else if (path == '~') {
+        final home = Platform.environment['HOME'];
+        if (home != null) {
+          resolvedPath = home;
+        }
+      }
+
+      debugPrint('Opening in Finder: $resolvedPath');
+      Process.run('open', [resolvedPath]);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -192,6 +273,12 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         actions: [
+          if (widget.themeController != null)
+            IconButton(
+              icon: const Icon(Icons.settings),
+              onPressed: _showSettingsDialog,
+              tooltip: AppLocalizations.of(context)!.settings,
+            ),
           Padding(
             padding: const EdgeInsets.only(right: 16.0),
             child: FilledButton.icon(
@@ -204,17 +291,34 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: _mountPoints.isEmpty
           ? Center(child: Text(AppLocalizations.of(context)!.noMountPoints))
-          : ListView.builder(
+          : ReorderableListView.builder(
+              buildDefaultDragHandles: false,
               itemCount: _mountPoints.length,
+              onReorder: _onReorder,
               itemBuilder: (context, index) {
                 return MountPointListItem(
+                  key: ValueKey(_mountPoints[index].id),
+                  index: index,
                   mountPoint: _mountPoints[index],
                   onEdit: () => _editMountPoint(index),
                   onDelete: () => _deleteMountPoint(index),
                   onToggleMount: () => _toggleMount(index),
+                  onOpenFinder: () =>
+                      _openInFinder(_mountPoints[index].localPath),
                 );
               },
             ),
     );
+  }
+
+  void _onReorder(int oldIndex, int newIndex) {
+    setState(() {
+      if (oldIndex < newIndex) {
+        newIndex -= 1;
+      }
+      final MountPoint item = _mountPoints.removeAt(oldIndex);
+      _mountPoints.insert(newIndex, item);
+      _saveMountPoints();
+    });
   }
 }

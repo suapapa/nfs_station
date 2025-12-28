@@ -57,6 +57,8 @@ This document provides key guidelines and context for AI agents and developers t
   1. Add/Update keys in `lib/l10n/`.
   2. Run `flutter gen-l10n`.
   3. Verify that the app compiles without errors.
+- **Theme**: The app uses a system theme by default. Ensure that the app is visually appealing and easy to use.
+  1. Use Global Setting to change the theme, dark mode or light mode or system default.
 
 ### 5.3 Testing
 - When changing logic, update existing tests or create new unit/widget tests in the `test/` directory.

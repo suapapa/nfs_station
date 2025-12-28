@@ -34,5 +34,10 @@
     }
   },
   "noMountPoints": "No mount points registered.",
-  "editSettings": "Edit settings"
+  "editSettings": "Edit settings",
+  "settings": "Settings",
+  "theme": "Theme",
+  "system": "System",
+  "light": "Light",
+  "dark": "Dark"
 }

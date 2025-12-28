@@ -34,5 +34,10 @@
     }
   },
   "noMountPoints": "등록된 마운트 포인트가 없습니다.",
-  "editSettings": "설정 변경"
+  "editSettings": "설정 변경",
+  "settings": "설정",
+  "theme": "테마",
+  "system": "시스템 설정",
+  "light": "밝은 테마",
+  "dark": "어두운 테마"
 }

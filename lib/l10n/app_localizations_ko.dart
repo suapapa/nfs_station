@@ -74,4 +74,19 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get editSettings => '설정 변경';
+
+  @override
+  String get settings => '설정';
+
+  @override
+  String get theme => '테마';
+
+  @override
+  String get system => '시스템 설정';
+
+  @override
+  String get light => '밝은 테마';
+
+  @override
+  String get dark => '어두운 테마';
 }

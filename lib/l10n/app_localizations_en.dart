@@ -74,4 +74,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get editSettings => 'Edit settings';
+
+  @override
+  String get settings => 'Settings';
+
+  @override
+  String get theme => 'Theme';
+
+  @override
+  String get system => 'System';
+
+  @override
+  String get light => 'Light';
+
+  @override
+  String get dark => 'Dark';
 }

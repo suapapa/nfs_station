@@ -5,6 +5,7 @@ set -e
 git tag -a $1 -m "Release $1"
 git push origin $1
 
+flutter clean
 flutter build macos --release
 
 mkdir -p release

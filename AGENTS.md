@@ -65,7 +65,7 @@ This document provides key guidelines and context for AI agents and developers t
 - Ensure all tests pass by running `flutter test`.
 
 ### 5.4 Documentation
-- Keep this `AGENTS.md` and the `README.md` updated when adding new features, changing APIs, or modifying the project structure.
+- Keep this `AGENTS.md` and the `README.md` (also update README_EN.md) updated when adding new features, changing APIs, or modifying the project structure.
 
 ---
 

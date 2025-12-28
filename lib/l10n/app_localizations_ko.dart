@@ -9,7 +9,7 @@ class AppLocalizationsKo extends AppLocalizations {
   AppLocalizationsKo([String locale = 'ko']) : super(locale);
 
   @override
-  String get appTitle => 'NFS Mounter';
+  String get appTitle => 'NFS Station';
 
   @override
   String get addMountPoint => '마운트 포인트 추가';

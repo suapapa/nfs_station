@@ -266,10 +266,10 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Row(
-          children: const [
+          children: [
             Icon(Icons.dns), // Logo placeholder
             SizedBox(width: 8),
-            Text('NFS Mounter'),
+            Text(AppLocalizations.of(context)!.appTitle),
           ],
         ),
         actions: [

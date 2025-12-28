@@ -9,7 +9,7 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appTitle => 'NFS Mounter';
+  String get appTitle => 'NFS Station';
 
   @override
   String get addMountPoint => 'Add Mount Point';

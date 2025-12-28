@@ -1,6 +1,6 @@
 {
   "@@locale": "ko",
-  "appTitle": "NFS Mounter",
+  "appTitle": "NFS Station",
   "addMountPoint": "마운트 포인트 추가",
   "editMountPoint": "마운트 포인트 수정",
   "deleteMountPoint": "마운트 포인트 삭제",

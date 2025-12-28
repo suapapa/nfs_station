@@ -24,7 +24,7 @@ class _NFSMounterAppState extends State<NFSMounterApp> {
       listenable: _themeController,
       builder: (context, child) {
         return MaterialApp(
-          title: 'NFS Mounter',
+          title: 'NFS Station',
           localizationsDelegates: const [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,

@@ -9,7 +9,7 @@ class AppLocalizationsPl extends AppLocalizations {
   AppLocalizationsPl([String locale = 'pl']) : super(locale);
 
   @override
-  String get appTitle => 'NFS Mounter';
+  String get appTitle => 'NFS Station';
 
   @override
   String get addMountPoint => 'Dodaj punkt montowania';

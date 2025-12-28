@@ -1,4 +1,4 @@
-# NFS Mounter
+# NFS Station
 
 macOS에서 NFS(Network File System) 디렉토리를 쉽게 마운트하고 관리할 수 있도록 도와주는 Flutter 기반 데스크톱 애플리케이션입니다.
 

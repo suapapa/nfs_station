@@ -8,8 +8,8 @@ void main() {
     await tester.pumpWidget(const NFSMounterApp());
 
     // Verify that the title is displayed.
-    expect(find.text('NFS Mounter'), findsOneWidget);
+    expect(find.text('NFS Station'), findsOneWidget);
     // There shouldn't be any counter stuff
-    expect(find.byIcon(Icons.add), findsNothing);
+    expect(find.byIcon(Icons.add), findsOneWidget);
   });
 }

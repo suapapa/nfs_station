@@ -109,4 +109,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get validationError => 'Validation Error';
+
+  @override
+  String get nfsVersion => 'NFS Version';
 }

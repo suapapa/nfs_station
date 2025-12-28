@@ -44,7 +44,7 @@ class NfsService {
     // -o rw: 읽기/쓰기
     // -o nfc: 유니코드 정규화 (macOS/Linux 호환성)
     final command =
-        'mount -t nfs -o resvport,rw,nfc "${mountPoint.serverAddress}:${mountPoint.serverPath}" "$resolvedLocalPath"';
+        'mount -t nfs -o nfsvers=${mountPoint.nfsVersion},resvport,rw,nfc "${mountPoint.serverAddress}:${mountPoint.serverPath}" "$resolvedLocalPath"';
 
     // 3. AppleScript로 실행 (관리자 암호 프롬프트 표시)
     // AppleScript 내부에서 사용할 때 command 내의 쌍따옴표를 이스케이프 처리해야 함

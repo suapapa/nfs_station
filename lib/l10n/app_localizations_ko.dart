@@ -107,4 +107,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get validationError => '입력 오류';
+
+  @override
+  String get nfsVersion => 'NFS 버전';
 }

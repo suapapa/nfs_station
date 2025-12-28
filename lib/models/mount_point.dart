@@ -5,6 +5,7 @@ class MountPoint {
   String serverPath;
   String localPath;
   bool isMounted;
+  int nfsVersion;
 
   MountPoint({
     required this.id,
@@ -13,6 +14,7 @@ class MountPoint {
     required this.serverPath,
     required this.localPath,
     this.isMounted = false,
+    this.nfsVersion = 4,
   });
 
   MountPoint copyWith({
@@ -22,6 +24,7 @@ class MountPoint {
     String? serverPath,
     String? localPath,
     bool? isMounted,
+    int? nfsVersion,
   }) {
     return MountPoint(
       id: id ?? this.id,
@@ -30,6 +33,7 @@ class MountPoint {
       serverPath: serverPath ?? this.serverPath,
       localPath: localPath ?? this.localPath,
       isMounted: isMounted ?? this.isMounted,
+      nfsVersion: nfsVersion ?? this.nfsVersion,
     );
   }
 
@@ -40,6 +44,7 @@ class MountPoint {
       'serverAddress': serverAddress,
       'serverPath': serverPath,
       'localPath': localPath,
+      'nfsVersion': nfsVersion,
     };
   }
 
@@ -51,6 +56,7 @@ class MountPoint {
       serverPath: json['serverPath'] as String,
       localPath: json['localPath'] as String,
       isMounted: false, // Default to false when loaded
+      nfsVersion: json['nfsVersion'] as int? ?? 4,
     );
   }
 }

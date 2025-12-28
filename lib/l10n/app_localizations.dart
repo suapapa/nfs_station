@@ -291,6 +291,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Validation Error'**
   String get validationError;
+
+  /// No description provided for @nfsVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'NFS Version'**
+  String get nfsVersion;
 }
 
 class _AppLocalizationsDelegate

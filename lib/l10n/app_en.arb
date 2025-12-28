@@ -45,5 +45,6 @@
   "duplicateNameError": "A configuration with this name already exists.",
   "duplicatePathError": "A configuration using this mount directory already exists.",
   "invalidJsonError": "Invalid configuration file.",
-  "validationError": "Validation Error"
+  "validationError": "Validation Error",
+  "nfsVersion": "NFS Version"
 }

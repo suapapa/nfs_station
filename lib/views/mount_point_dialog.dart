@@ -24,6 +24,7 @@ class _MountPointDialogState extends State<MountPointDialog> {
   late TextEditingController _serverAddressController;
   late TextEditingController _serverPathController;
   late TextEditingController _localPathController;
+  int _nfsVersion = 4;
 
   Future<void> _exportConfig() async {
     if (widget.mountPoint == null) return;
@@ -74,6 +75,7 @@ class _MountPointDialogState extends State<MountPointDialog> {
           _serverAddressController.text = mountPoint.serverAddress;
           _serverPathController.text = mountPoint.serverPath;
           _localPathController.text = mountPoint.localPath;
+          _nfsVersion = mountPoint.nfsVersion;
         });
       }
     } catch (e) {
@@ -130,6 +132,7 @@ class _MountPointDialogState extends State<MountPointDialog> {
     _localPathController = TextEditingController(
       text: widget.mountPoint?.localPath ?? '',
     );
+    _nfsVersion = widget.mountPoint?.nfsVersion ?? 4;
   }
 
   @override
@@ -195,6 +198,25 @@ class _MountPointDialogState extends State<MountPointDialog> {
                 labelText: AppLocalizations.of(context)!.localPath,
               ),
             ),
+            const SizedBox(height: 16),
+            DropdownButtonFormField<int>(
+              value: _nfsVersion,
+              decoration: InputDecoration(
+                labelText: AppLocalizations.of(context)!.nfsVersion,
+                border: const OutlineInputBorder(),
+              ),
+              items: const [
+                DropdownMenuItem(value: 3, child: Text('NFSv3')),
+                DropdownMenuItem(value: 4, child: Text('NFSv4')),
+              ],
+              onChanged: (value) {
+                if (value != null) {
+                  setState(() {
+                    _nfsVersion = value;
+                  });
+                }
+              },
+            ),
           ],
         ),
       ),
@@ -230,6 +252,7 @@ class _MountPointDialogState extends State<MountPointDialog> {
               serverPath: _serverPathController.text,
               localPath: _localPathController.text,
               isMounted: widget.mountPoint?.isMounted ?? false,
+              nfsVersion: _nfsVersion,
             );
             Navigator.of(context).pop(mountPoint);
           },

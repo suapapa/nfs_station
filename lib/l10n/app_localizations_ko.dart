@@ -89,4 +89,22 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get dark => '어두운 테마';
+
+  @override
+  String get importConfig => '설정 가져오기';
+
+  @override
+  String get exportConfig => '설정 내보내기';
+
+  @override
+  String get duplicateNameError => '이미 같은 이름의 설정이 존재합니다.';
+
+  @override
+  String get duplicatePathError => '이미 같은 마운트 디렉터리를 사용하는 설정이 존재합니다.';
+
+  @override
+  String get invalidJsonError => '잘못된 설정 파일입니다.';
+
+  @override
+  String get validationError => '입력 오류';
 }

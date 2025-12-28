@@ -16,8 +16,8 @@ This document provides key guidelines and context for AI agents and developers t
 - **Framework**: [Flutter for Desktop (macOS)](https://flutter.dev/desktop)
 - **State Management**: MVC with `setState` and `SharedPreferences` for persistence
 - **Key Dependencies**:
-  - `flutter_localizations` (Required for multi-language support)
   - `shared_preferences` (For data persistence)
+  - `file_picker` (For importing/exporting configuration)
 
 ## 3. Architecture & Design
 

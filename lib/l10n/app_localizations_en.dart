@@ -89,4 +89,24 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dark => 'Dark';
+
+  @override
+  String get importConfig => 'Import Config';
+
+  @override
+  String get exportConfig => 'Export Config';
+
+  @override
+  String get duplicateNameError =>
+      'A configuration with this name already exists.';
+
+  @override
+  String get duplicatePathError =>
+      'A configuration using this mount directory already exists.';
+
+  @override
+  String get invalidJsonError => 'Invalid configuration file.';
+
+  @override
+  String get validationError => 'Validation Error';
 }

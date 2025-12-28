@@ -255,6 +255,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Dark'**
   String get dark;
+
+  /// No description provided for @importConfig.
+  ///
+  /// In en, this message translates to:
+  /// **'Import Config'**
+  String get importConfig;
+
+  /// No description provided for @exportConfig.
+  ///
+  /// In en, this message translates to:
+  /// **'Export Config'**
+  String get exportConfig;
+
+  /// No description provided for @duplicateNameError.
+  ///
+  /// In en, this message translates to:
+  /// **'A configuration with this name already exists.'**
+  String get duplicateNameError;
+
+  /// No description provided for @duplicatePathError.
+  ///
+  /// In en, this message translates to:
+  /// **'A configuration using this mount directory already exists.'**
+  String get duplicatePathError;
+
+  /// No description provided for @invalidJsonError.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid configuration file.'**
+  String get invalidJsonError;
+
+  /// No description provided for @validationError.
+  ///
+  /// In en, this message translates to:
+  /// **'Validation Error'**
+  String get validationError;
 }
 
 class _AppLocalizationsDelegate

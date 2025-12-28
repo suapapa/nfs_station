@@ -76,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void _addMountPoint() async {
     final result = await showDialog<MountPoint>(
       context: context,
-      builder: (context) => const MountPointDialog(),
+      builder: (context) => MountPointDialog(existingMountPoints: _mountPoints),
     );
 
     if (result != null) {
@@ -90,7 +90,10 @@ class _HomeScreenState extends State<HomeScreen> {
   void _editMountPoint(int index) async {
     final result = await showDialog<MountPoint>(
       context: context,
-      builder: (context) => MountPointDialog(mountPoint: _mountPoints[index]),
+      builder: (context) => MountPointDialog(
+        mountPoint: _mountPoints[index],
+        existingMountPoints: _mountPoints,
+      ),
     );
 
     if (result != null) {

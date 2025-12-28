@@ -7,4 +7,8 @@ git push origin $1
 
 flutter build macos --release
 
-zip -r release/nfs_mounter-$1.zip build/macos/Build/Products/Release/nfs_mounter.app
+mkdir -p release
+PROJECT_ROOT=$(pwd)
+cd "build/macos/Build/Products/Release"
+zip -r "$PROJECT_ROOT/release/nfs_station-$1.zip" "NFS Station.app"
+cd "$PROJECT_ROOT"

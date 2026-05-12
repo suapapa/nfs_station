@@ -297,6 +297,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'NFS Version'**
   String get nfsVersion;
+
+  /// No description provided for @openInFinder.
+  ///
+  /// In en, this message translates to:
+  /// **'Open in Finder'**
+  String get openInFinder;
+
+  /// No description provided for @configData.
+  ///
+  /// In en, this message translates to:
+  /// **'Configuration Data'**
+  String get configData;
+
+  /// No description provided for @exportSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Configuration exported successfully.'**
+  String get exportSuccess;
+
+  /// No description provided for @importSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Configuration imported successfully.'**
+  String get importSuccess;
+
+  /// No description provided for @importConfirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'This will replace all current mount points with {count} imported entries. Continue?'**
+  String importConfirmation(int count);
+
+  /// No description provided for @invalidYamlError.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid YAML configuration file.'**
+  String get invalidYamlError;
 }
 
 class _AppLocalizationsDelegate

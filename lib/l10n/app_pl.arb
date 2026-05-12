@@ -39,5 +39,25 @@
   "theme": "Motyw",
   "system": "Systemowy",
   "light": "Jasny",
-  "dark": "Ciemny"
+  "dark": "Ciemny",
+  "importConfig": "Importuj konfigurację",
+  "exportConfig": "Eksportuj konfigurację",
+  "duplicateNameError": "Konfiguracja o tej nazwie już istnieje.",
+  "duplicatePathError": "Konfiguracja z tym katalogiem montowania już istnieje.",
+  "invalidJsonError": "Nieprawidłowy plik konfiguracji.",
+  "validationError": "Błąd walidacji",
+  "nfsVersion": "Wersja NFS",
+  "openInFinder": "Otwórz w Finderze",
+  "configData": "Dane konfiguracji",
+  "exportSuccess": "Konfiguracja wyeksportowana pomyślnie.",
+  "importSuccess": "Konfiguracja zaimportowana pomyślnie.",
+  "importConfirmation": "Spowoduje to zastąpienie wszystkich bieżących punktów montowania {count} zaimportowanymi wpisami. Kontynuować?",
+  "@importConfirmation": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "invalidYamlError": "Nieprawidłowy plik konfiguracji YAML."
 }

@@ -91,25 +91,44 @@ class AppLocalizationsPl extends AppLocalizations {
   String get dark => 'Ciemny';
 
   @override
-  String get importConfig => 'Import Config';
+  String get importConfig => 'Importuj konfigurację';
 
   @override
-  String get exportConfig => 'Export Config';
+  String get exportConfig => 'Eksportuj konfigurację';
 
   @override
-  String get duplicateNameError =>
-      'A configuration with this name already exists.';
+  String get duplicateNameError => 'Konfiguracja o tej nazwie już istnieje.';
 
   @override
   String get duplicatePathError =>
-      'A configuration using this mount directory already exists.';
+      'Konfiguracja z tym katalogiem montowania już istnieje.';
 
   @override
-  String get invalidJsonError => 'Invalid configuration file.';
+  String get invalidJsonError => 'Nieprawidłowy plik konfiguracji.';
 
   @override
-  String get validationError => 'Validation Error';
+  String get validationError => 'Błąd walidacji';
 
   @override
-  String get nfsVersion => 'NFS Version';
+  String get nfsVersion => 'Wersja NFS';
+
+  @override
+  String get openInFinder => 'Otwórz w Finderze';
+
+  @override
+  String get configData => 'Dane konfiguracji';
+
+  @override
+  String get exportSuccess => 'Konfiguracja wyeksportowana pomyślnie.';
+
+  @override
+  String get importSuccess => 'Konfiguracja zaimportowana pomyślnie.';
+
+  @override
+  String importConfirmation(int count) {
+    return 'Spowoduje to zastąpienie wszystkich bieżących punktów montowania $count zaimportowanymi wpisami. Kontynuować?';
+  }
+
+  @override
+  String get invalidYamlError => 'Nieprawidłowy plik konfiguracji YAML.';
 }

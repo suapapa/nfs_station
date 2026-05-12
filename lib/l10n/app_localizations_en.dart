@@ -112,4 +112,24 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get nfsVersion => 'NFS Version';
+
+  @override
+  String get openInFinder => 'Open in Finder';
+
+  @override
+  String get configData => 'Configuration Data';
+
+  @override
+  String get exportSuccess => 'Configuration exported successfully.';
+
+  @override
+  String get importSuccess => 'Configuration imported successfully.';
+
+  @override
+  String importConfirmation(int count) {
+    return 'This will replace all current mount points with $count imported entries. Continue?';
+  }
+
+  @override
+  String get invalidYamlError => 'Invalid YAML configuration file.';
 }

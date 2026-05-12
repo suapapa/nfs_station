@@ -46,5 +46,18 @@
   "duplicatePathError": "A configuration using this mount directory already exists.",
   "invalidJsonError": "Invalid configuration file.",
   "validationError": "Validation Error",
-  "nfsVersion": "NFS Version"
+  "nfsVersion": "NFS Version",
+  "openInFinder": "Open in Finder",
+  "configData": "Configuration Data",
+  "exportSuccess": "Configuration exported successfully.",
+  "importSuccess": "Configuration imported successfully.",
+  "importConfirmation": "This will replace all current mount points with {count} imported entries. Continue?",
+  "@importConfirmation": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "invalidYamlError": "Invalid YAML configuration file."
 }

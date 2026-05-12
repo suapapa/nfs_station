@@ -110,4 +110,24 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get nfsVersion => 'NFS 버전';
+
+  @override
+  String get openInFinder => 'Finder에서 열기';
+
+  @override
+  String get configData => '설정 데이터';
+
+  @override
+  String get exportSuccess => '설정을 내보냈습니다.';
+
+  @override
+  String get importSuccess => '설정을 가져왔습니다.';
+
+  @override
+  String importConfirmation(int count) {
+    return '현재 모든 마운트 포인트가 가져온 $count개의 항목으로 대체됩니다. 계속하시겠습니까?';
+  }
+
+  @override
+  String get invalidYamlError => '잘못된 YAML 설정 파일입니다.';
 }

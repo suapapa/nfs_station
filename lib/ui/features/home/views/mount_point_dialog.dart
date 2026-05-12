@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nfs_mounter/models/mount_point.dart';
+import 'package:nfs_mounter/data/models/mount_point.dart';
 import 'dart:convert';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
@@ -34,7 +34,7 @@ class _MountPointDialogState extends State<MountPointDialog> {
       final fileName =
           'nfs_config_${widget.mountPoint!.name.replaceAll(' ', '_')}.json';
 
-      final String? outputFile = await FilePicker.platform.saveFile(
+      final String? outputFile = await FilePicker.saveFile(
         dialogTitle: AppLocalizations.of(context)!.exportConfig,
         fileName: fileName,
         type: FileType.custom,
@@ -59,7 +59,7 @@ class _MountPointDialogState extends State<MountPointDialog> {
 
   Future<void> _importConfig() async {
     try {
-      final result = await FilePicker.platform.pickFiles(
+      final result = await FilePicker.pickFiles(
         type: FileType.custom,
         allowedExtensions: ['json'],
       );
@@ -200,7 +200,7 @@ class _MountPointDialogState extends State<MountPointDialog> {
             ),
             const SizedBox(height: 16),
             DropdownButtonFormField<int>(
-              value: _nfsVersion,
+              initialValue: _nfsVersion,
               decoration: InputDecoration(
                 labelText: AppLocalizations.of(context)!.nfsVersion,
                 border: const OutlineInputBorder(),

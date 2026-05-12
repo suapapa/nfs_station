@@ -1,72 +1,60 @@
 # AGENTS.md - NFS Mounter
 
-This document provides key guidelines and context for AI agents and developers to effectively understand, maintain, and contribute to the **NFS Mounter** project.
+AI-native context for building, maintaining, and scaling the **NFS Mounter** (NFS Station) macOS GUI.
 
----
+## 1. Quick Context
+| Attribute | Value |
+| :--- | :--- |
+| **Goal** | macOS GUI for managing NFS mounts. |
+| **Stack** | Flutter (macOS), Dart, MVC-ish. |
+| **State** | `setState` + `SharedPreferences` + `ThemeController`. |
+| **L10n** | `en`, `ko`, `pl` via `.arb` files. |
 
-## 1. Project Overview
+## 2. Architecture & Boundaries
+- **Models** (`lib/models/`): Data classes (e.g., `MountPoint`).
+- **Views** (`lib/views/`): Screens and widgets. Keep logic minimal.
+- **Services** (`lib/services/`): Side-effects: shell commands, persistence.
+- **Controllers** (`lib/controllers/`): App-wide state (e.g., `ThemeController`).
+- **L10n** (`lib/l10n/`): Strings. Run `flutter gen-l10n` after edits.
 
-- **Project Name**: NFS Mounter
-- **Purpose**: Provide a graphical user interface (GUI) for mounting and unmounting NFS (Network File System) directories on macOS.
-- **Target Platform**: macOS
+## 3. Procedural Workflows
 
-## 2. Tech Stack
+### 3.1. Adding a New UI String
+1. Update `lib/l10n/app_en.arb`, `app_ko.arb`, and `app_pl.arb`.
+2. Run `flutter gen-l10n` to update generated classes.
+3. Access in UI via `AppLocalizations.of(context)!.keyName`.
 
-- **Language**: [Dart](https://dart.dev/)
-- **Framework**: [Flutter for Desktop (macOS)](https://flutter.dev/desktop)
-- **State Management**: MVC with `setState` and `SharedPreferences` for persistence
-- **Key Dependencies**:
-  - `shared_preferences` (For data persistence)
-  - `file_picker` (For importing/exporting configuration)
+### 3.2. Modifying NFS Logic
+1. Update `lib/services/nfs_service.dart`.
+2. Use `osascript` for commands requiring sudo (mount/unmount).
+3. Verify via `flutter test`.
 
-## 3. Architecture & Design
+## 4. Decision Table
+| If you need to... | Use... | Avoid... |
+| :--- | :--- | :--- |
+| Persist user settings | `SharedPreferences` | SQLite/Files directly |
+| Run shell commands | `NfsService` | `Process.run` in Views |
+| Manage theme | `ThemeController` | Local `setState` for brightness |
 
-- **Architecture Pattern**: MVC (Model-View-Controller)
-- **Directory Structure**:
-  - `lib/`: Main source code
-    - `l10n/`: Localization files (`.arb`)
-    - `models/`: Data models
-    - `views/`: UI components and screens
-    - `services/`: Business logic and external services
-    - `controllers/`: Logic and state management (Optional)
-  - `test/`: Unit and widget tests
+## 5. Patterns & Snippets
 
-## 4. Coding Conventions
+### NFS Mount Command Pattern
+```dart
+final command = 'mount -t nfs -o nfsvers=${mp.nfsVersion},resvport,rw,nfc "${mp.serverAddress}:${mp.serverPath}" "$localPath"';
+// Use osascript for sudo
+final script = 'do shell script "$command" with administrator privileges';
+```
 
-- **Style Guide**: Follow the official [Dart Style Guide](https://dart.dev/guides/language/evolutionary-style-guide).
-- **Documentation**: Provide clear comments for complex logic and public APIs.
-- **Asynchronous Programming**: Use `Future`, `Stream`, and `async`/`await` appropriately to ensure the UI remains responsive and never blocks.
-- **Error Handling**: Implement robust error handling, especially for shell command executions (mount/unmount).
+### L10n Placeholder Pattern
+```json
+"deleteConfirmation": "Are you sure you want to delete '{name}'?",
+"@deleteConfirmation": { "placeholders": { "name": { "type": "String" } } }
+```
 
-## 5. Agent Instructions
-
-### 5.0 Scaffold the project
-- Scaffold the project using the Flutter for Desktop (macOS) template.
-- Ensure that the project is configured for macOS development.
-- Refer `/docs/nfs_mounter_plan.jpeg` for the project plan drawing. 
-
-
-### 5.1 Code Modifications
-- Adhere to the established architecture patterns.
-- Verify compatibility when introducing new packages or dependencies.
-- **Validation**: Always run `flutter analyze` after modifications. Ensure there are no linting errors or warnings before committing.
-
-### 5.2 UI & Localization
-- **Multi-language Support**: All UI strings MUST support English (`en`), Korean (`ko`), and Polish (`pl`).
-- **L10n Workflow**: 
-  1. Add/Update keys in `lib/l10n/`.
-  2. Run `flutter gen-l10n`.
-  3. Verify that the app compiles without errors.
-- **Theme**: The app uses a system theme by default. Ensure that the app is visually appealing and easy to use.
-  1. Use Global Setting to change the theme, dark mode or light mode or system default.
-
-### 5.3 Testing
-- When changing logic, update existing tests or create new unit/widget tests in the `test/` directory.
-- Ensure all tests pass by running `flutter test`.
-
-### 5.4 Documentation
-- Keep this `AGENTS.md` and the `README.md` (also update README_EN.md) updated when adding new features, changing APIs, or modifying the project structure.
-
----
-
-> **Note**: This file is a living document and should be updated continuously as the project evolves.
+## 6. Guards & Constraints
+| DON'T | DO |
+| :--- | :--- |
+| Block UI with shell commands. | Use `async/await` and show loaders in UI. |
+| Hardcode UI strings. | Add to `.arb` files and use `AppLocalizations`. |
+| Put complex logic in `build()`. | Move logic to `Services` or `Controllers`. |
+| Bypass `ThemeController`. | Wrap root with `ListenableBuilder` using `ThemeController`. |

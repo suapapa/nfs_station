@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nfs_mounter/models/mount_point.dart';
+import 'package:nfs_mounter/data/models/mount_point.dart';
 import 'package:nfs_mounter/l10n/app_localizations.dart';
 
 class MountPointListItem extends StatefulWidget {
@@ -70,7 +70,7 @@ class _MountPointListItemState extends State<MountPointListItem> {
                 ),
                 IconButton(
                   icon: const Icon(Icons.folder_open),
-                  tooltip: 'Open in Finder',
+                  tooltip: AppLocalizations.of(context)!.openInFinder,
                   onPressed: widget.mountPoint.isMounted
                       ? widget.onOpenFinder
                       : null,

@@ -1,40 +1,40 @@
 # NFS Station
 
-macOS에서 NFS(Network File System) 디렉토리를 쉽게 마운트하고 관리할 수 있도록 도와주는 Flutter 기반 데스크톱 애플리케이션입니다.
+A Flutter-based desktop application that helps you easily mount and manage NFS (Network File System) directories on macOS.
 
 ![screenshot](docs/screenshot.png)
 
-## 주요 기능
+## Key Features
 
-- **GUI 기반 마운트 관리**: 명령줄을 사용하지 않고 직관적인 인터페이스로 NFS 서버를 마운트 및 언마운트할 수 있습니다.
-- **NFS 버전 선택**: 마운트 포인트별로 NFSv3 또는 NFSv4를 선택할 수 있습니다.
-- **마운트 지점 저장**: 설정한 마운트 지점(서버 주소, 경로 등)이 앱을 종료해도 저장되어 재실행 시 편리하게 사용할 수 있습니다.
-- **마운트 지점 순서 변경**: 햄버거 메뉴 아이콘을 드래그하여 마운트 지점 목록의 순서를 자유롭게 변경할 수 있습니다.
-- **설정 가져오기/내보내기**: 마운트 포인트 설정을 JSON 파일로 내보내거나 가져올 수 있습니다.
-- **테마 관리**: 시스템 기본, 밝은 테마, 어두운 테마 중 선택할 수 있습니다.
-- **Finder에서 열기**: 마운트된 디렉터리를 Finder에서 바로 열 수 있습니다.
-- **다국어 지원**: 한국어(KO), 영어(EN), 폴란드어(PL)를 지원합니다.
-- **생산성 향상**: 자주 사용하는 NFS 경로를 빠르게 연결하고 관리하세요.
+- **GUI-based Mount Management**: Mount and unmount NFS servers with an intuitive interface without using the command line.
+- **NFS Version Selection**: Choose NFSv3 or NFSv4 per mount point.
+- **Persist Mount Points**: Configured mount points (server address, path, etc.) are saved even after the app is closed, making them convenient to use when you restart.
+- **Reorder Mount Points**: Easily change the order of mount points by dragging the hamburger menu icon.
+- **Import/Export Configuration**: Export and import mount point settings as JSON files.
+- **Theme Management**: Switch between system default, light, and dark themes.
+- **Open in Finder**: Open mounted directories directly in Finder.
+- **Multi-language Support**: Includes support for English (EN), Korean (KO), and Polish (PL).
+- **Productivity**: Quickly connect and manage frequently used NFS paths.
 
-## 시작하기
+## Getting Started
 
-이 프로젝트는 macOS 애플리케이션으로 개발되었습니다. 실행하려면 Flutter SDK가 설치되어 있어야 합니다.
+This project is developed as a macOS application. You need to have the Flutter SDK installed to run it.
 
-1. 저장소를 클론합니다.
-2. 종속성을 설치합니다.
+1. Clone the repository.
+2. Install dependencies.
    ```bash
    flutter pub get
    ```
-3. macOS 타겟으로 앱을 실행합니다.
+3. Run the app with the macOS target.
    ```bash
    flutter run -d macos
    ```
 
-## 요구 사항
+## Requirements
 
 - macOS
-- NFS 서버 접근 권한
+- Access permissions to an NFS server
 
-## 라이선스
+## License
 
-이 프로젝트는 [MIT License](LICENSE) 하에 배포됩니다.
+This project is distributed under the [MIT License](LICENSE).

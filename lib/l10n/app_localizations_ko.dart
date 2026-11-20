@@ -115,6 +115,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get openInFinder => 'Finder에서 열기';
 
   @override
+  String get openInFileManager => '파일 관리자에서 열기';
+
+  @override
   String get configData => '설정 데이터';
 
   @override

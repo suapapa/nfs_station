@@ -48,6 +48,7 @@
   "validationError": "Validation Error",
   "nfsVersion": "NFS Version",
   "openInFinder": "Open in Finder",
+  "openInFileManager": "Open in File Manager",
   "configData": "Configuration Data",
   "exportSuccess": "Configuration exported successfully.",
   "importSuccess": "Configuration imported successfully.",

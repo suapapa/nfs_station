@@ -283,23 +283,11 @@ class HomeScreen extends StatelessWidget {
     }
   }
 
-  void _openInFinder(String path) {
-    if (Platform.isMacOS) {
-      String resolvedPath = path;
-      if (path.startsWith('~/')) {
-        final home = Platform.environment['HOME'];
-        if (home != null) {
-          resolvedPath = path.replaceFirst('~', home);
-        }
-      } else if (path == '~') {
-        final home = Platform.environment['HOME'];
-        if (home != null) {
-          resolvedPath = home;
-        }
-      }
-
-      debugPrint('Opening in Finder: $resolvedPath');
-      Process.run('open', [resolvedPath]);
+  Future<void> _openDirectory(String path) async {
+    try {
+      await viewModel.openDirectory(path);
+    } catch (e) {
+      debugPrint('Failed to open directory: $e');
     }
   }
 
@@ -348,7 +336,7 @@ class HomeScreen extends StatelessWidget {
                       onEdit: () => _editMountPoint(context, index),
                       onDelete: () => _deleteMountPoint(context, index),
                       onToggleMount: () => _toggleMount(context, index),
-                      onOpenFinder: () => _openInFinder(mountPoint.localPath),
+                      onOpenFinder: () => _openDirectory(mountPoint.localPath),
                     );
                   },
                 ),

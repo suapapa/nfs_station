@@ -48,6 +48,7 @@
   "validationError": "입력 오류",
   "nfsVersion": "NFS 버전",
   "openInFinder": "Finder에서 열기",
+  "openInFileManager": "파일 관리자에서 열기",
   "configData": "설정 데이터",
   "exportSuccess": "설정을 내보냈습니다.",
   "importSuccess": "설정을 가져왔습니다.",

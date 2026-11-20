@@ -304,6 +304,12 @@ abstract class AppLocalizations {
   /// **'Open in Finder'**
   String get openInFinder;
 
+  /// No description provided for @openInFileManager.
+  ///
+  /// In en, this message translates to:
+  /// **'Open in File Manager'**
+  String get openInFileManager;
+
   /// No description provided for @configData.
   ///
   /// In en, this message translates to:

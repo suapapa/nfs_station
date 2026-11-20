@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:nfs_mounter/data/models/mount_point.dart';
 import 'package:nfs_mounter/l10n/app_localizations.dart';
@@ -70,7 +71,9 @@ class _MountPointListItemState extends State<MountPointListItem> {
                 ),
                 IconButton(
                   icon: const Icon(Icons.folder_open),
-                  tooltip: AppLocalizations.of(context)!.openInFinder,
+                  tooltip: Platform.isMacOS
+                      ? AppLocalizations.of(context)!.openInFinder
+                      : AppLocalizations.of(context)!.openInFileManager,
                   onPressed: widget.mountPoint.isMounted
                       ? widget.onOpenFinder
                       : null,

@@ -98,4 +98,7 @@ class HomeViewModel extends ChangeNotifier {
     await _repository.saveMountPoints(_mountPoints);
     notifyListeners();
   }
+
+  Future<void> openDirectory(String localPath) =>
+      _nfsService.openDirectory(localPath);
 }
